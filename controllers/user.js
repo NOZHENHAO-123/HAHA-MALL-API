@@ -15,7 +15,10 @@ exports.SignIn = (req,res,err,user) => {
             res.json(FillData.fillErrData(0,err.message))
           }
           if ((req.body.password, isMatch) == true) {     // 用户名和密码正确
-            res.json(FillData.fillSucessData());
+
+            let token = FillData.getToken({user: req.body.user}); // 生成token
+            
+            res.json(FillData.fillSucessData({token:token}));
           } else {
             res.json(FillData.fillErrData(0,'用户名或者密码错误'))
           }
@@ -26,6 +29,7 @@ exports.SignIn = (req,res,err,user) => {
         
     }
 }
+
 // 添加账户
 exports.AddUser = (res,err) => {
     if (err) {
@@ -37,4 +41,12 @@ exports.AddUser = (res,err) => {
     } else {
         res.json(FillData.fillSucessData());
     }
+}
+// 获取所有用户
+exports.getUserList = (res,err,data) => {
+  if (err) {
+    res.json(FillData.fillErrData(0,err.message));
+  } else {
+      res.json(FillData.fillSucessData(data));
+  }
 }

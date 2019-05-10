@@ -1,0 +1,1 @@
+exports.PRIVATE_KEY = 'haha-mall'    // 私有密钥

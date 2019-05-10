@@ -36,9 +36,8 @@ let filter = (req, res, next) => {
 }
 
 app.use(filter);
-// app.use('/api',issue)
-app.use(issue)
-app.use(user)
+app.use('/api',issue)
+app.use('/api',user)
 
 
 app.listen(3000,() => {

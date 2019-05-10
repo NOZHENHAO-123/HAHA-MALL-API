@@ -17,13 +17,22 @@ router.post('/user/add',(req,res) => {
       Res.AddUser(res,err);
     });
 })
+
 // 登录
-router.post('/user',(req,res) => {
+router.post('/login/account',(req,res) => {
+  console.log(req.body)
     let data = req.body;
     User.find({user:data.user}, (err, user) => {
       Res.SignIn(req,res,err,user)
     });
 })
 
-module.exports = router;
+// 查询所有用户
+router.get('/user/list',(req,res) => {
 
+  User.find({}, '_id user', (err, user) => {
+    Res.getUserList(res,err,user)
+  });
+})
+
+module.exports = router;
